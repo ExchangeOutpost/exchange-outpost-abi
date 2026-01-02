@@ -27,7 +27,7 @@ npm install
 ```typescript
 import { FunctionArgs, scheduleEmail } from 'exchange-outpost-abi';
 
-export function myStrategy() {
+export function run() {
   // Parse input from host
   const input = Host.inputString();
   const args = FunctionArgs.fromJsonString(input);

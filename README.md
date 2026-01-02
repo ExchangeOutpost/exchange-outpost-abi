@@ -54,8 +54,14 @@ npm install
 use exchange_outpost_abi::{FunctionArgs, Candle, schedule_email};
 use extism_pdk::*;
 
+#[derive(Serialize, ToBytes)]
+#[encoding(Json)]
+struct Output {
+  email_sent: bool
+}
+
 #[plugin_fn]
-pub fn my_strategy(input: String) -> FnResult<String> {
+pub fn run(input: String) -> FnResult<Output> {
     // Parse input from host
     let args: FunctionArgs = serde_json::from_str(&input)?;
     
@@ -71,9 +77,10 @@ pub fn my_strategy(input: String) -> FnResult<String> {
     // Send notifications
     if candles[0].close > threshold {
         schedule_email("trader@example.com", "Price alert triggered!")?;
+        Ok (Output { email_sent: true })
     }
     
-    Ok(json!({"status": "ok"}).to_string())
+    Ok(Output{email_sent: false} )
 }
 ```
 
@@ -82,7 +89,7 @@ pub fn my_strategy(input: String) -> FnResult<String> {
 ```typescript
 import { FunctionArgs, scheduleEmail } from 'exchange-outpost-abi';
 
-export function myStrategy() {
+export function run() {
   // Parse input from host
   const input = Host.inputString();
   const args = FunctionArgs.fromJsonString(input);

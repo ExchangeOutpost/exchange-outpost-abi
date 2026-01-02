@@ -22,7 +22,7 @@ function calculateSMA(values: number[], period: number): number {
 /**
  * Main plugin export - analyzes ticker data and sends alerts
  */
-export function analyze() {
+export function run() {
   try {
     // Get input from host
     const input = Host.inputString();
@@ -99,44 +99,5 @@ Time: ${new Date(latestCandle.timestamp * 1000).toISOString()}
         error: error.message || 'Unknown error'
       }));
     }
-  }
-}
-
-/**
- * Example plugin that works with decimal precision
- */
-export function analyzeDecimal() {
-  try {
-    const input = Host.inputString();
-    const args = FunctionArgs.fromJsonString(input);
-    
-    const symbol = args.getCallArgument('symbol');
-    
-    // Get candles with high decimal precision
-    const decimalCandles = args.getCandlesDecimal(symbol);
-    
-    // Work with Decimal.js for precise calculations
-    const latestCandle = decimalCandles[decimalCandles.length - 1];
-    
-    // Calculate percentage change
-    const priceChange = latestCandle.close.minus(latestCandle.open);
-    const percentChange = priceChange.dividedBy(latestCandle.open).times(100);
-    
-    const result = {
-      symbol,
-      open: latestCandle.open.toString(),
-      close: latestCandle.close.toString(),
-      high: latestCandle.high.toString(),
-      low: latestCandle.low.toString(),
-      change: priceChange.toString(),
-      percentChange: percentChange.toFixed(2) + '%',
-    };
-    
-    Host.outputString(JSON.stringify(result, null, 2));
-    
-  } catch (error) {
-    Host.outputString(JSON.stringify({
-      error: error.message || 'Unknown error'
-    }));
   }
 }
