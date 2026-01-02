@@ -1,6 +1,6 @@
 {
   "name": "exchange-outpost-abi",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Exchange Outpost ABI for TypeScript Extism plugins",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
