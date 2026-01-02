@@ -1,0 +1,29 @@
+{
+  "name": "exchange-outpost-abi",
+  "version": "0.1.0",
+  "description": "Exchange Outpost ABI for TypeScript Extism plugins",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "extism",
+    "plugin",
+    "trading",
+    "financial-data",
+    "candles"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "@extism/js-pdk": "^1.1.0",
+    "decimal.js": "^10.4.3"
+  }
+}

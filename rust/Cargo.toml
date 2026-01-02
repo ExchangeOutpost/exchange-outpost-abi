@@ -2,6 +2,7 @@
 name = "exchange_outpost_abi"
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
 
 [dependencies]
 extism-pdk = "1.4.1"
