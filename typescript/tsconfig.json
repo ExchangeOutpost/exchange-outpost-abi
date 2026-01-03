@@ -4,6 +4,7 @@
     "module": "Node16",
     "lib": [],
     "declaration": true,
+    "types": ["@extism/js-pdk"],
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
