@@ -1,7 +1,7 @@
 {
   "tickers_data": {
-    "BTC-USD": {
-      "symbol": "BTC-USD",
+    "BTCUSDT": {
+      "symbol": "BTCUSDT",
       "exchange": "coinbase",
       "precision": 2,
       "candles": [
@@ -17,8 +17,8 @@
         [1704099600, 42720.00, 42800.75, 42700.50, 42780.25, 178.2]
       ]
     },
-    "ETH-USD": {
-      "symbol": "ETH-USD",
+    "ETHUSDT": {
+      "symbol": "ETHUSDT",
       "exchange": "coinbase",
       "precision": 2,
       "candles": [
@@ -35,11 +35,8 @@
       ]
     }
   },
-  "piped_data": {
-    "previous_analysis": "{\"signal\": \"bullish\", \"strength\": 0.75}"
-  },
   "call_arguments": {
-    "symbol": "BTC-USD",
+    "symbol": "BTCUSDT",
     "short_period": "5",
     "long_period": "10",
     "email": "trader@example.com"
