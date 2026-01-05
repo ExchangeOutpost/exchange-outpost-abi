@@ -25,7 +25,7 @@ npm install
 ### Basic Plugin Example
 
 ```typescript
-import { FunctionArgs, scheduleEmail } from 'exchange-outpost-abi';
+import { FunctionArgs, scheduleEmail, output } from 'exchange-outpost-abi';
 
 export function run() {
   // Parse input from host
@@ -47,7 +47,7 @@ export function run() {
   }
   
   // Return result
-  Host.outputString(JSON.stringify({ status: 'ok' }));
+  output({ status: 'ok' });
 }
 ```
 
@@ -80,7 +80,7 @@ import { scheduleWebhook, scheduleEmail } from 'exchange-outpost-abi';
 
 // Schedule a webhook
 scheduleWebhook('/api/alert', JSON.stringify({
-  symbol: 'BTC-USD',
+  symbol: 'BTCUSD',
   price: 50000,
   action: 'buy'
 }));
@@ -127,8 +127,15 @@ Main container for plugin input data.
 - `getCallArguments(): Map<string, string>` - Get all call arguments
 - `getCallArgument<T>(key: string, parser?: (v: string) => T): T` - Get and parse argument
 - `static fromJsonString(json: string): FunctionArgs` - Parse from JSON
+- `static empty(): FunctionArgs` - Create an empty FunctionArgs instance
 
 ### Functions
+
+#### `output(data: any): void`
+Output data to the host environment.
+- Handles `ArrayBuffer` and typed arrays as binary output
+- Converts strings and objects to appropriate output format
+- Automatically stringifies non-string objects to JSON
 
 #### `scheduleWebhook(path: string, body: string): void`
 Schedule a webhook notification.

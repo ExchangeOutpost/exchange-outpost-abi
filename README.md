@@ -12,8 +12,10 @@ Exchange Outpost ABI provides types and utilities for handling financial data, f
 - 🔢 **Decimal Support**: High-precision decimal arithmetic (Rust: `rust_decimal`, TypeScript: `decimal.js`)
 - 📥 **Function Arguments**: Parse and access ticker data, piped data, and call arguments
 - 🔔 **Notifications**: Schedule webhooks and emails from your plugins
+- 📤 **Output Helpers**: Simplified output handling for JSON and binary data
 - 🛡️ **Type Safety**: Full type safety in both Rust and TypeScript
 - 🔌 **Plugin-Ready**: Built for Extism WASM plugins
+- 🐳 **Dev Container**: Pre-configured development environment for quick setup
 
 ## Installation
 
@@ -87,12 +89,11 @@ pub fn run(input: String) -> FnResult<Output> {
 ### TypeScript
 
 ```typescript
-import { FunctionArgs, scheduleEmail } from 'exchange-outpost-abi';
+import { FunctionArgs, scheduleEmail, output } from 'exchange-outpost-abi';
 
 export function run() {
   // Parse input from host
-  const input = Host.inputString();
-  const args = FunctionArgs.fromJsonString(input);
+  const args = FunctionArgs.get();
   
   // Get candles for a ticker
   const candles = args.getCandles('BTCUSD');
@@ -109,7 +110,7 @@ export function run() {
   }
   
   // Return result
-  Host.outputString(JSON.stringify({ status: 'ok' }));
+  output({ status: 'ok' });
 }
 ```
 
@@ -191,23 +192,36 @@ exchange-outpost-abi/
 │       └── lib.rs          # Library exports
 └── typescript/        # TypeScript implementation
     ├── package.json
+    ├── .devcontainer/      # Dev Container configuration
     └── src/
         ├── candle.ts       # Candle data structures
         ├── fin_data.ts     # Function arguments parsing
         ├── notifications.ts # Notification scheduling
+        ├── output.ts       # Output helper functions
         └── index.ts        # Library exports
 ```
 
-## Building
+## Development Setup
 
-### Rust
+### Using Dev Containers (Recommended for TypeScript)
+
+The TypeScript implementation includes a pre-configured Dev Container for easy setup:
+
+1. Open the `typescript/` folder in VS Code
+2. Install the "Dev Containers" extension
+3. Click "Reopen in Container" when prompted
+4. The container will automatically install dependencies and build tools
+
+### Manual Setup
+
+#### Rust
 
 ```bash
 cd rust
 cargo build --release
 ```
 
-### TypeScript
+#### TypeScript
 
 ```bash
 cd typescript
@@ -232,7 +246,7 @@ For more detailed documentation:
 
 ## Version
 
-Current version: **0.1.2**
+Current version: **0.1.4**
 
 ## License
 

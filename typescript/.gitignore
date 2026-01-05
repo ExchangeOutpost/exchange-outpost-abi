@@ -3,3 +3,4 @@ dist/
 *.wasm
 *.log
 .DS_Store
+binaryen

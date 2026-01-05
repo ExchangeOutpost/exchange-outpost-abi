@@ -104,6 +104,8 @@ export class FunctionArgs {
     this.callArguments = callArguments;
   }
 
+  
+
   /**
    * Get all ticker labels (keys)
    */
@@ -245,5 +247,12 @@ export class FunctionArgs {
     } catch (error) {
       throw new Error(`Failed to parse FunctionArgs JSON: ${error}`);
     }
+  }
+
+  /**
+   * Get the function arguments from the host environment
+   */
+  static get(): FunctionArgs {
+    return FunctionArgs.fromJsonString(Host.inputString());
   }
 }

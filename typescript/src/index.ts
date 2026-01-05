@@ -12,3 +12,4 @@ export {
   NotificationError,
   NotificationErrorCode
 } from './notifications';
+export { output } from './output';
