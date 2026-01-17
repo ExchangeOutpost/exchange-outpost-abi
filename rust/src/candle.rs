@@ -3,7 +3,7 @@ use serde::{Deserialize, Deserializer};
 
 /// Represents a single candlestick in financial data, typically used in trading charts.
 pub struct Candle<T> {
-    /// The timestamp of the candlestick, usually in seconds since the Unix epoch.
+    /// The timestamp of the candlestick in milliseconds since the Unix epoch.
     pub timestamp: i64,
     /// The opening price of the asset during the candlestick's time period.
     pub open: T,

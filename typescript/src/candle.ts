@@ -4,7 +4,7 @@ import Decimal from 'decimal.js';
  * Represents a single candlestick in financial data, typically used in trading charts.
  */
 export class Candle<T> {
-  /** The timestamp of the candlestick, usually in seconds since the Unix epoch. */
+  /** The timestamp of the candlestick in milliseconds since the Unix epoch. */
   timestamp: number;
   /** The opening price of the asset during the candlestick's time period. */
   open: T;
