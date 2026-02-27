@@ -63,10 +63,7 @@ struct Output {
 }
 
 #[plugin_fn]
-pub fn run(input: String) -> FnResult<Output> {
-    // Parse input from host
-    let args: FunctionArgs = serde_json::from_str(&input)?;
-    
+pub fn run(call_args: FunctionArg) -> FnResult<Output> {
     // Get candles for a ticker
     let candles: Vec<Candle<f64>> = args.get_candles("BTCUSDT")?;
     
@@ -77,7 +74,7 @@ pub fn run(input: String) -> FnResult<Output> {
     let threshold: f64 = args.get_call_argument("threshold")?;
     
     // Send notifications
-    if candles[0].close > threshold {
+    if candles.last().close > threshold {
         schedule_email("trader@example.com", "Price alert triggered!")?;
         Ok (Output { email_sent: true })
     }
